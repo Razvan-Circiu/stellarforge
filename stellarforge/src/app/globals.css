@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* restul tău */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+a { text-decoration: none; color: inherit; }
+
+.night-red { filter: hue-rotate(-12deg) saturate(120%) brightness(95%); }
+.night-red * { color: #ffe9e0; }

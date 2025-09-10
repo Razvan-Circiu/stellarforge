@@ -1,0 +1,70 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Object {
+  id            String        @id @default(cuid())
+  catalog       String
+  code          String
+  name          String
+  type          String
+  raDeg         Float
+  decDeg        Float
+  magnitude     Float?
+  constellation String?
+  createdAt     DateTime      @default(now())
+  observations  Observation[]
+
+  @@unique([catalog, code], name: "catalog_code")
+}
+
+model Site {
+  id           String        @id @default(cuid())
+  name         String
+  lat          Float
+  lon          Float
+  bortle       Int
+  notes        String?
+  createdAt    DateTime      @default(now())
+  observations Observation[]
+}
+
+model Gear {
+  id           String        @id @default(cuid())
+  type         String
+  model        String
+  specsJson    String?
+  notes        String?
+  createdAt    DateTime      @default(now())
+  observations Observation[]
+}
+
+model Observation {
+  id           String   @id @default(cuid())
+  objectId     String
+  siteId       String?
+  gearId       String?
+  date         DateTime
+  seeing       Int?
+  transparency Int?
+  moonPhase    Int?
+  description  String?
+  imageUrl     String?
+  createdAt    DateTime @default(now())
+
+  // Relații
+  object Object @relation(fields: [objectId], references: [id], onDelete: Cascade)
+  site   Site?  @relation(fields: [siteId], references: [id], onDelete: SetNull)
+  gear   Gear?  @relation(fields: [gearId], references: [id], onDelete: SetNull)
+
+  @@index([objectId])
+  @@index([siteId])
+  @@index([gearId])
+}
