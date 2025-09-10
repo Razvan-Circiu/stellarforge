@@ -158,7 +158,7 @@ export default function CosmosBackground() {
         <PointsLayer positions={mw2} color={[0.80,0.90,1.00]} size={10} opacity={0.10} rot={bandRotation} rotSpeed={[0, -0.006, 0]} />
         <PointsLayer positions={mw3} color={[1.00,0.96,0.90]} size={7} opacity={0.08} rot={bandRotation} rotSpeed={[0, -0.005, 0]} />
 
-        {/* planete */}
+        {}
         <Planet radius={0.36} pos={[-0.85, -0.18, -1.25]} base={[0.92,0.84,0.78]} tint={[0.80,0.62,0.55]} rotSpeed={0.05} ring />
         <Planet radius={0.28} pos={[ 0.95,  0.25, -1.05]} base={[0.85,0.88,0.95]} tint={[0.62,0.70,0.95]} rotSpeed={0.08} />
       </Canvas>
